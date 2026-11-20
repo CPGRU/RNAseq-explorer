@@ -1,7 +1,9 @@
 import os
 from pathlib import Path
+
 import psycopg2
 from dotenv import load_dotenv
+
 
 # etl/src/etl/db_conn.py -> parents[3] is RNAseq-explorer/
 ROOT_DIR = Path(__file__).resolve().parents[3]

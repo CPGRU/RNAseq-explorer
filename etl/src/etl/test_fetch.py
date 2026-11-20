@@ -1,5 +1,4 @@
 import pandas as pd
-import psycopg2
 from etl.db_conn import get_pg_connection
 
 # Connect to PostgreSQL
