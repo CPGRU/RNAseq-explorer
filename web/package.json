@@ -44,5 +44,11 @@
 		"vite": "^8.3.8",
 		"vitest": "^5.1.0",
 		"vitest-browser-svelte": "^3.1.0"
+	},
+	"dependencies": {
+		"@types/pg": "^8.23.1",
+		"@types/plotly.js-dist-min": "^2.3.4",
+		"pg": "^8.23.1",
+		"plotly.js-dist-min": "^4.3.0"
 	}
 }

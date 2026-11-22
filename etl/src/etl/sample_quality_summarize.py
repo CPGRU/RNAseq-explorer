@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from etl.db_conn import get_pg_connection
+from etl.gene_annotation import annotate_ensembl_df
 
 BASE_DIR = Path(__file__).resolve().parents[3]
 OUTPUT_DIR = BASE_DIR / "data" / "processed"
@@ -126,6 +127,7 @@ def main() -> None:
     df = fetch_data()
     pca_records, corr_payload = compute_sample_pca_and_corr(df)
     paired_df = compute_paired_gene_stats(df)
+    paired_df = annotate_ensembl_df(paired_df, id_col="ensg_id")
 
     (OUTPUT_DIR / "sample_pca.json").write_text(
         pd.Series(pca_records).to_json(orient="values", indent=2)

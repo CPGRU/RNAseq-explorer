@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from etl.db_conn import get_pg_connection
+from gene_annotation import annotate_ensembl_df
 
 # etl/src/etl/rnaseq_expanded_stats.py -> parents[3] is RNAseq-explorer/
 BASE_DIR = Path(__file__).resolve().parents[3]
@@ -178,6 +179,7 @@ def main() -> None:
     # Merge paired stats with distribution stats (inner join on genes with valid paired tests)
     combined_df = pd.merge(paired_df, dist_df, on="ensg_id", how="inner")
     final_df = add_volcano_and_ma_fields(combined_df)
+    final_df = annotate_ensembl_df(final_df, id_col="ensg_id")
 
     csv_path = OUTPUT_DIR / "rnaseq_paired_volcano_ma.csv"
     json_path = OUTPUT_DIR / "rnaseq_paired_volcano_ma.json"

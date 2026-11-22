@@ -84,8 +84,8 @@ def main() -> None:
     print("Running differential expression statistics...")
     stats_df = run_analysis(raw_df)
 
-    csv_path = OUTPUT_DIR / "gene_stats.csv"
-    json_path = OUTPUT_DIR / "gene_stats.json"
+    csv_path = OUTPUT_DIR / "mean_dge.csv"
+    json_path = OUTPUT_DIR / "mean_dge.json"
 
     stats_df.to_csv(csv_path, index=False)
     stats_df.to_json(json_path, orient="records", indent=2)
